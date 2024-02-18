@@ -94,7 +94,8 @@ if check_password(st):
                     )
                     CONFIG.forwards[i].end = int(
                         st.text_input(
-                            "End", value=str(CONFIG.forwards[i].end), key=f"end {con}"
+                            "End", 
+                            value=str(CONFIG.forwards[i].end), key=f"end {con}",
                         )
                     )
                 with st.expander("Delete this connection"):
