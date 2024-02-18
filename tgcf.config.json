@@ -1,0 +1,199 @@
+{
+   "pid": 781,
+   "login": {
+      "API_ID": 19987622,
+      "API_HASH": "00d42b460cef01c13d97dad1f417194e",
+      "user_type": 1,
+      "phone_no": 91,
+      "USERNAME": "",
+      "SESSION_STRING": "1BJWap1wBuzuMSZ9EuW30RNwOS9INEZJqVoLy_ogd2X72HMwQJJrt8eZG9-01tlNR_1gD_UI9d4-dYBOCW739Fd1H7SVNZk73BUYicbyoFUg7cXaHD_EzEH4DK71hzBSybBK4JSFg7K8SOmZJC1yuNdIamoZc6s_eTo5MU9xkzZDQ1AqZIpz4d2QC-J1j9SxFXZdccqN_Kb6s0xEXiNQACPx_dN77aTul7Gl7QgIyuHYfl3NwqBIj6c_zbA7kfHXeXo4NlP5sMTOYkZXRb88bZ8QZOgZb7cNQuYW_K0FYyy1PHVwuaW0ARun114MiqiaJIbofW486VGd-zHSYrD8JyFHdAdATcm8=",
+      "BOT_TOKEN": "6637411818:AAE3uvOz72dpAT8mpLEqw7PYd0sD3TGREO0"
+   },
+   "admins": [
+      21040638
+   ],
+   "forwards": [
+      {
+         "con_name": "broad",
+         "use_this": true,
+         "source": -1001845518274,
+         "dest": [
+            -1001197752236
+         ],
+         "offset": 18,
+         "end": 5
+      },
+      {
+         "con_name": "check",
+         "use_this": true,
+         "source": -1002144149293,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 212,
+         "end": 0
+      },
+      {
+         "con_name": "NSMOViES FiLES",
+         "use_this": true,
+         "source": -1002097183965,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "Cult Files",
+         "use_this": true,
+         "source": -1002097183965,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "\ud835\uddaf\ud835\uddcb\ud835\uddc2\ud835\uddc6\ud835\uddbe\ud835\udda5\ud835\uddc2\ud835\uddd1 \ud835\uddaf\ud835\uddc1\ud835\uddba\ud835\uddcc\ud835\uddbe",
+         "use_this": true,
+         "source": -1001856404502,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "Nothing here",
+         "use_this": true,
+         "source": -1002042695907,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "KyoGo (Backup)",
+         "use_this": true,
+         "source": -1001619486856,
+         "dest": [
+            -1001845518274
+         ],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      },
+      {
+         "con_name": "",
+         "use_this": true,
+         "source": "",
+         "dest": [],
+         "offset": 0,
+         "end": 0
+      }
+   ],
+   "show_forwarded_from": false,
+   "mode": 0,
+   "live": {
+      "delete_sync": true,
+      "delete_on_edit": ".deleteMe"
+   },
+   "past": {
+      "delay": 10
+   },
+   "plugins": {
+      "filter": {
+         "check": false,
+         "users": {
+            "blacklist": [],
+            "whitelist": []
+         },
+         "files": {
+            "blacklist": [],
+            "whitelist": []
+         },
+         "text": {
+            "blacklist": [],
+            "whitelist": [],
+            "case_sensitive": false,
+            "regex": false
+         }
+      },
+      "fmt": {
+         "check": false,
+         "style": "preserve"
+      },
+      "mark": {
+         "check": false,
+         "image": "image.png",
+         "position": "centre",
+         "frame_rate": 15
+      },
+      "ocr": {
+         "check": false
+      },
+      "replace": {
+         "check": false,
+         "text": {},
+         "text_raw": "",
+         "regex": false
+      },
+      "caption": {
+         "check": false,
+         "header": "",
+         "footer": ""
+      }
+   },
+   "bot_messages": {
+      "start": "Hi! I am alive",
+      "bot_help": "For details visit github.com/aahnik/tgcf"
+   }
+}
