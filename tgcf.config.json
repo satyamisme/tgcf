@@ -1,5 +1,5 @@
 {
-   "pid": 781,
+   "pid": 2775190,
    "login": {
       "API_ID": 19987622,
       "API_HASH": "00d42b460cef01c13d97dad1f417194e",
@@ -14,31 +14,11 @@
    ],
    "forwards": [
       {
-         "con_name": "broad",
-         "use_this": true,
-         "source": -1001845518274,
-         "dest": [
-            -1001197752236
-         ],
-         "offset": 18,
-         "end": 5
-      },
-      {
-         "con_name": "check",
-         "use_this": true,
-         "source": -1002144149293,
-         "dest": [
-            -1001845518274
-         ],
-         "offset": 212,
-         "end": 0
-      },
-      {
          "con_name": "NSMOViES FiLES",
          "use_this": true,
-         "source": -1002097183965,
+         "source": "-1002097183965",
          "dest": [
-            -1001845518274
+            "-1001845518274"
          ],
          "offset": 0,
          "end": 0
@@ -46,9 +26,9 @@
       {
          "con_name": "Cult Files",
          "use_this": true,
-         "source": -1002097183965,
+         "source": "-1001728616788",
          "dest": [
-            -1001845518274
+            "-1001845518274"
          ],
          "offset": 0,
          "end": 0
@@ -56,9 +36,9 @@
       {
          "con_name": "\ud835\uddaf\ud835\uddcb\ud835\uddc2\ud835\uddc6\ud835\uddbe\ud835\udda5\ud835\uddc2\ud835\uddd1 \ud835\uddaf\ud835\uddc1\ud835\uddba\ud835\uddcc\ud835\uddbe",
          "use_this": true,
-         "source": -1001856404502,
+         "source": "-1001856404502",
          "dest": [
-            -1001845518274
+            "-1001845518274"
          ],
          "offset": 0,
          "end": 0
@@ -66,9 +46,9 @@
       {
          "con_name": "Nothing here",
          "use_this": true,
-         "source": -1002042695907,
+         "source": "-1002042695907",
          "dest": [
-            -1001845518274
+            "-1001845518274"
          ],
          "offset": 0,
          "end": 0
@@ -76,73 +56,38 @@
       {
          "con_name": "KyoGo (Backup)",
          "use_this": true,
-         "source": -1001619486856,
+         "source": "-1001619486856",
          "dest": [
-            -1001845518274
+            "-1001845518274"
          ],
          "offset": 0,
          "end": 0
       },
       {
-         "con_name": "",
+         "con_name": "Cult",
          "use_this": true,
-         "source": "",
-         "dest": [],
+         "source": "1728616788",
+         "dest": [
+            "-1001845518274"
+         ],
          "offset": 0,
          "end": 0
       },
       {
-         "con_name": "",
+         "con_name": "Broadtest",
          "use_this": true,
-         "source": "",
-         "dest": [],
-         "offset": 0,
-         "end": 0
-      },
-      {
-         "con_name": "",
-         "use_this": true,
-         "source": "",
-         "dest": [],
-         "offset": 0,
-         "end": 0
-      },
-      {
-         "con_name": "",
-         "use_this": true,
-         "source": "",
-         "dest": [],
-         "offset": 0,
-         "end": 0
-      },
-      {
-         "con_name": "",
-         "use_this": true,
-         "source": "",
-         "dest": [],
-         "offset": 0,
-         "end": 0
-      },
-      {
-         "con_name": "",
-         "use_this": true,
-         "source": "",
-         "dest": [],
-         "offset": 0,
-         "end": 0
-      },
-      {
-         "con_name": "",
-         "use_this": true,
-         "source": "",
-         "dest": [],
+         "source": "-1001845518274",
+         "dest": [
+            "-1001197752236"
+         ],
          "offset": 0,
          "end": 0
       }
    ],
-   "show_forwarded_from": false,
+   "show_forwarded_from": true,
    "mode": 0,
    "live": {
+      "sequential_updates": true,
       "delete_sync": true,
       "delete_on_edit": ".deleteMe"
    },
@@ -151,13 +96,17 @@
    },
    "plugins": {
       "filter": {
-         "check": false,
+         "check": true,
          "users": {
             "blacklist": [],
             "whitelist": []
          },
          "files": {
-            "blacklist": [],
+            "blacklist": [
+               "sticker",
+               "gif",
+               "audio"
+            ],
             "whitelist": []
          },
          "text": {
