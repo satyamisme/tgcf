@@ -40,7 +40,7 @@ if check_password(st):
 
             tab_strings.append(f"{status} {label}")
 
-        tabs = st.tabs(list(tab_strings))
+        tabs = st.scroll(st.tabs(list(tab_strings)))
 
         for i in range(num):
             with tabs[i]:
