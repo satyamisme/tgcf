@@ -19,16 +19,7 @@ if check_password(st):
     if add_new:
         CONFIG.forwards.append(Forward())
         write_config(CONFIG)
-
-    num = len(CONFIG.forwards)
-
-    if num == 0:
-        st.write(
-            "No connections found. Click on Add new connection above to create one!"
-        )
-    else:
-        tab_strings = []
-        for i in range(num):
+        for i in range(len(CONFIG.forwards)):
             if CONFIG.forwards[i].con_name:
                 label = CONFIG.forwards[i].con_name
             else:
@@ -42,7 +33,7 @@ if check_password(st):
 
         tabs = st.scroll(st.tabs(list(tab_strings)))
 
-        for i in range(num):
+        for i in range(len(CONFIG.forwards)):
             with tabs[i]:
                 con = i + 1
                 name = CONFIG.forwards[i].con_name
