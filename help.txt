@@ -1,3 +1,29 @@
+#!/bin/bash
+cd $(dirname $0)
+#sudo docker ps -aq | xargs sudo docker stop | xargs sudo docker rm
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade tgcf
+screen -d -m tgcf-web
+
+
+
+#to stop 
+
+use below command 
+
+exit tgcf-web
+
+
+
+
+
+
+
+
+
+
+
 #MONGO_CON_STR="mongodb+srv://satyamisme:Aa100200@tgcf.f9ppnil.mongodb.net/?retryWrites=true&w=majority"
 MONGO_CON_STR=mongodb+srv://satyamisme:Aa100200@tgcf.f9ppnil.mongodb.net/?retryWrites=true&w=majority
 #MONGO_DB_NAME=tgcf
