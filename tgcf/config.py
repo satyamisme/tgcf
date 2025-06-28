@@ -50,7 +50,7 @@ class PastSettings(BaseModel):
 
     @validator("delay")
     def validate_delay(cls, val):  # pylint: disable=no-self-use,no-self-argument
-        """Check if the delay used by user is values. If not, use closest logical values."""
+        """Check if the delay used by user is valid. If not, use closest logical values."""
         if val not in range(0, 101):
             logging.warning("delay must be within 0 to 100 seconds")
             if val > 100:
@@ -61,6 +61,7 @@ class PastSettings(BaseModel):
 
 
 class LoginConfig(BaseModel):
+    """Configuration for Telegram login credentials and session information."""
 
     API_ID: int = 0
     API_HASH: str = ""
@@ -72,6 +73,7 @@ class LoginConfig(BaseModel):
 
 
 class BotMessages(BaseModel):
+    """Configuration for custom bot messages, if tgcf is run as a bot."""
     start: str = "Hi! I am alive"
     bot_help: str = "For details visit github.com/aahnik/tgcf"
 
@@ -248,6 +250,24 @@ logging.info("config.py got executed")
 
 
 def get_SESSION(section: Any = CONFIG.login, default: str = 'tgcf_bot'):
+    """
+    Determines and returns the appropriate Telethon session object.
+
+    It uses either a StringSession (for user_type 1) if SESSION_STRING is set,
+    or the bot token string (for user_type 0) if BOT_TOKEN is set.
+    The `default` string is used as the session name for bot accounts.
+
+    Args:
+        section: The configuration section containing login details (usually CONFIG.login).
+        default: The default session name to use for bot accounts.
+
+    Returns:
+        Union[StringSession, str]: The Telethon StringSession or bot session name.
+
+    Raises:
+        SystemExit: If essential login information (SESSION_STRING or BOT_TOKEN)
+                    is missing based on the user_type.
+    """
     if section.SESSION_STRING and section.user_type == 1:
         logging.info("using session string")
         SESSION = StringSession(section.SESSION_STRING)
