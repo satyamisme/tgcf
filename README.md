@@ -111,6 +111,8 @@ you need to install `ffmpeg` and `tesseract-ocr` libraries in you system.
 
 See also: [How to install and run using docker ?](https://github.com/aahnik/tgcf/wiki/Install-and-run-using-docker)
 
+For managing `tgcf` with Docker using simple shell scripts (build, start, stop, logs), see the [Docker Scripts Usage Guide](./DOCKER_SCRIPTS_USAGE.md).
+
 ## Deploy to Cloud
 
 Click on [this link](https://m.do.co/c/98b725055148) and get **free 200$**
