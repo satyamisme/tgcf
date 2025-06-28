@@ -1,7 +1,5 @@
 import time
-
 import streamlit as st
-
 from tgcf.config import CONFIG, Forward, read_config, write_config
 from tgcf.web_ui.password import check_password
 from tgcf.web_ui.utils import get_list, get_string, hide_st, switch_theme
@@ -13,101 +11,97 @@ st.set_page_config(
     page_icon="🔗",
 )
 hide_st(st)
-switch_theme(st,CONFIG)
+switch_theme(st, CONFIG)
+
 if check_password(st):
-    add_new = st.button("Add new connection")
+    st.header("Manage Connections")
+    add_new = st.button("➕ Add new connection")
     if add_new:
         CONFIG.forwards.append(Forward())
         write_config(CONFIG)
+        st.experimental_rerun()
 
     num = len(CONFIG.forwards)
 
     if num == 0:
-        st.write(
-            "No connections found. Click on Add new connection above to create one!"
-        )
+        st.info("No connections found. Click 'Add new connection' to create one!")
     else:
-        tab_strings = []
-        for i in range(num):
-            if CONFIG.forwards[i].con_name:
-                label = CONFIG.forwards[i].con_name
-            else:
-                label = f"Connection {i+1}"
-            if CONFIG.forwards[i].use_this:
-                status = "🟢"
-            else:
-                status = "🟡"
+        # Status summary header
+        active_count = sum(fwd.use_this for fwd in CONFIG.forwards)
+        st.subheader(f"Connections: {active_count} active / {num} total")
 
-            tab_strings.append(f"{status} {label}")
-
-        tabs = st.tabs(list(tab_strings))
-
-        for i in range(num):
-            with tabs[i]:
-                con = i + 1
-                name = CONFIG.forwards[i].con_name
-                if name:
-                    label = f"{con} [{name}]"
-                else:
-                    label = con
-                with st.expander("Modify Metadata"):
-                    st.write(f"Connection ID: **{con}**")
-                    CONFIG.forwards[i].con_name = st.text_input(
-                        "Name of this connection",
-                        value=CONFIG.forwards[i].con_name,
-                        key=con,
+        for i, forward in enumerate(CONFIG.forwards):
+            # Connection header with status
+            status = "🟢" if forward.use_this else "🟡"
+            default_name = f"Connection {i+1}"
+            con_name = forward.con_name or default_name
+            expander = st.expander(f"{status} {con_name}", expanded=True)
+            
+            with expander:
+                cols = st.columns([0.4, 0.3, 0.3])
+                with cols[0]:
+                    forward.con_name = st.text_input(
+                        "Connection name",
+                        value=forward.con_name,
+                        key=f"name_{i}",
+                        placeholder=default_name
                     )
-
-                    st.info(
-                        "You can untick the below checkbox to suspend this connection."
+                with cols[1]:
+                    forward.use_this = st.checkbox(
+                        "Active",
+                        value=forward.use_this,
+                        key=f"active_{i}"
                     )
-                    CONFIG.forwards[i].use_this = st.checkbox(
-                        "Use this connection",
-                        value=CONFIG.forwards[i].use_this,
-                        key=f"use {con}",
-                    )
-                with st.expander("Source and Destination"):
-                    st.write(f"Configure connection {label}")
-
-                    CONFIG.forwards[i].source = st.text_input(
-                        "Source",
-                        value=CONFIG.forwards[i].source,
-                        key=f"source {con}",
-                    ).strip()
-                    st.write("only one source is allowed in a connection")
-                    CONFIG.forwards[i].dest = get_list(
-                        st.text_area(
-                            "Destinations",
-                            value=get_string(CONFIG.forwards[i].dest),
-                            key=f"dest {con}",
-                        )
-                    )
-                    st.write("Write destinations one item per line")
-
-                with st.expander("Past Mode Settings"):
-                    CONFIG.forwards[i].offset = int(
-                        st.text_input(
-                            "Offset",
-                            value=str(CONFIG.forwards[i].offset),
-                            key=f"offset {con}",
-                        )
-                    )
-                    CONFIG.forwards[i].end = int(
-                        st.text_input(
-                            "End", value=str(CONFIG.forwards[i].end), key=f"end {con}"
-                        )
-                    )
-                with st.expander("Delete this connection"):
-                    st.warning(
-                        f"Clicking the 'Remove' button will **delete** connection **{label}**. This action cannot be reversed once done.",
-                        icon="⚠️",
-                    )
-
-                    if st.button(f"Remove connection **{label}**"):
+                with cols[2]:
+                    st.write("")  # Spacer
+                    if st.button("🗑️ Delete", key=f"del_{i}", use_container_width=True):
                         del CONFIG.forwards[i]
                         write_config(CONFIG)
                         st.experimental_rerun()
 
-    if st.button("Save"):
-        write_config(CONFIG)
-        st.experimental_rerun()
+                # Source and Destination
+                st.subheader("Routing")
+                c1, c2 = st.columns(2)
+                with c1:
+                    forward.source = st.text_input(
+                        "Source",
+                        value=forward.source,
+                        key=f"source_{i}",
+                        help="Only one source allowed per connection"
+                    ).strip()
+                with c2:
+                    dests = st.text_area(
+                        "Destinations",
+                        value=get_string(forward.dest),
+                        key=f"dest_{i}",
+                        height=100,
+                        help="One destination per line"
+                    )
+                    forward.dest = get_list(dests)
+
+                # Past Mode Settings
+                st.subheader("Past Mode Settings")
+                c1, c2 = st.columns(2)
+                with c1:
+                    forward.offset = st.number_input(
+                        "Offset",
+                        value=forward.offset,
+                        key=f"offset_{i}",
+                        step=1
+                    )
+                with c2:
+                    forward.end = st.number_input(
+                        "End",
+                        value=forward.end,
+                        key=f"end_{i}",
+                        step=1
+                    )
+                
+                st.divider()
+
+        # Save button at bottom
+        if st.button("💾 Save All Changes", use_container_width=True, type="primary"):
+            write_config(CONFIG)
+            st.success("All connections updated!")
+            time.sleep(1)
+            st.experimental_rerun()
