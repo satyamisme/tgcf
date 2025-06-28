@@ -44,13 +44,11 @@ Extremely easy to get started yet ready for any complex task you throw at it.
 ![image](https://user-images.githubusercontent.com/66209958/209554118-c657e361-8ce2-462d-a305-04e44754cbf7.png)
 ![image](https://user-images.githubusercontent.com/66209958/209554345-1db31eff-7694-47ef-aede-6a77a7cefb83.png)
 
-<!-- - A **bot interface** is under development. Bot interface means a set of commands, buttons, and conversation flows that will allow you to alter config values while tgcf is running in live mode. -->
 <!-- - Any body with basic knowledge of python can easily write plugins for tgcf, thus extending its capabilities. -->
 - Detailed [**documentation**](https://github.com/aahnik/tgcf/wiki) and [**videos**](https://www.youtube.com/playlist?list=PLSTrsq_DvEgisMG5BLUf97tp2DoAnwCMG) makes it easy for you to configure tgcf and deploy to any platform of your choice.
   The following videos (english) explain everything in great detail.
   - [Feature Overview](https://youtu.be/FclVGY-K70M)
   - [Running on Windows/Mac/Linux](https://youtu.be/5GzHb6J7mc0)
-  <!-- - Running on Android -->
   - [Deploy to Digital Ocean Droplet](https://youtu.be/0p0JkJpfTA0)
 - Supported environments **Linux**, **Mac**, Windows (Running Ubuntu on top of **WSL-2**), **Android** (Using Termux app) and any platform where running **Docker** containers is supported.
 - All these is **free and open source**, with not a single feature behind a paywall. Tgcf serves to be a free alternative to many commercial telegram bots out there. However you may sponsor to accelerate the development of any new feature and get fast support over chat.
@@ -60,7 +58,7 @@ Extremely easy to get started yet ready for any complex task you throw at it.
 
 If you want to use tgcf for free, then run on your own desktop or mobile computer.
 
-Make sure you are on a supported environment and have python:3.10 or above, installed.
+Make sure you are on a supported environment and have Python 3.10+ installed.
 
 - Create a directory and move into it.
 
@@ -84,7 +82,7 @@ Make sure you are on a supported environment and have python:3.10 or above, inst
   ```
 
 - Set the password for accessing web interface.
-  The password is to be set in the `.env` file.
+  The password is to be set in an `.env` file located in the directory where you run `tgcf-web` (e.g., inside `my-tgcf`).
 
   ```shell
   echo "PASSWORD=hocus pocus qwerty utopia" >> .env
@@ -132,7 +130,7 @@ Here are some guides for deployment to different cloud providers.
 
 - [Heroku](https://github.com/aahnik/tgcf/wiki/Deploy-to-Heroku)
 - [Digital Ocean](https://github.com/aahnik/tgcf/wiki/Deploy-to-Digital-Ocean)
-- [Gitpod](https://github.com/aahnik/tgcf/wiki/Run-for-free-on-Gitpod")
+- [Gitpod](https://github.com/aahnik/tgcf/wiki/Run-for-free-on-Gitpod)
 - [Python Anywhere](https://github.com/aahnik/tgcf/wiki/Run-on-PythonAnywhere)
 - [Google Cloud Run](https://github.com/aahnik/tgcf/wiki/Run-on-Google-Cloud)
 

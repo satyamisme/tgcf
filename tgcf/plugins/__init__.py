@@ -20,6 +20,24 @@ PLUGINS = CONFIG.plugins
 
 
 class TgcfMessage:
+    """
+    A wrapper around Telethon's Message object that carries data through the plugin chain.
+
+    Plugins can modify attributes of this object (e.g., text, new_file)
+    to change the message content before it's forwarded.
+
+    Attributes:
+        message (telethon.tl.custom.message.Message): The original Telethon message.
+        text (str): The text of the message. Can be modified by plugins.
+        raw_text (str): The raw text of the message (usually same as text).
+        sender_id (int): The ID of the sender of the original message.
+        file_type (FileType): The type of media file in the message, if any.
+        new_file (Optional[str]): Path to a new file if a plugin generates/modifies a file.
+                                  If set, this file will be sent instead of the original.
+        cleanup (bool): If True and new_file is set, new_file will be deleted after sending.
+        reply_to (Optional[int]): Message ID to reply to in the destination chat.
+        client (telethon.TelegramClient): The Telethon client instance.
+    """
     def __init__(self, message: Message) -> None:
         self.message = message
         self.text = self.message.text
@@ -53,16 +71,46 @@ class TgcfMessage:
 
 
 class TgcfPlugin:
+    """
+    Base class for all tgcf plugins.
+
+    Plugins are used to modify messages before they are forwarded.
+    Each plugin must have a unique `id_`.
+
+    Methods:
+        __init__(data): Initializes the plugin with its specific configuration data.
+        __ainit__(): Optional asynchronous initialization method for plugins
+                     that need to perform async operations during setup.
+        modify(tm): Processes/modifies the TgcfMessage object.
+    """
     id_ = "plugin"
 
-    def __init__(self, data: Dict[str, Any]) -> None:  # TODO data type has changed
+    def __init__(self, data: Dict[str, Any]) -> None:  # TODO data type has changed: This comment refers to the 'data' dict structure, which varies per plugin. Type hinting 'data' more specifically is complex here; individual plugins handle their own config model (e.g., FilterConfig).
         self.data = data
 
     async def __ainit__(self) -> None:
-        """Asynchronous initialization here."""
+        """Optional asynchronous initialization method for plugins.
+
+        This method is called once when tgcf starts if the plugin ID
+        is listed in ASYNC_PLUGIN_IDS. It can be used for setup
+        tasks that require asynchronous operations (e.g., API calls).
+        """
 
     def modify(self, tm: TgcfMessage) -> TgcfMessage:
-        """Modify the message here."""
+        """
+        Processes or modifies a TgcfMessage object.
+
+        This is the core method of a plugin. It can alter attributes of `tm`
+        (e.g., `tm.text`, `tm.new_file`) to change the message content.
+
+        Args:
+            tm (TgcfMessage): The message object to process.
+
+        Returns:
+            TgcfMessage: The modified message object. If a plugin returns `None`,
+                         the message will not be forwarded and processing for this
+                         message stops.
+        """
         return tm
 
 
